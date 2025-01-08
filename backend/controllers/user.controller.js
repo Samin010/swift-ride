@@ -1,8 +1,11 @@
 import bcrypt from "bcrypt";
+
 import { validationResult } from "express-validator";
+
 import { userModel } from "../models/user.model.js";
 import { generateToken } from "../utils/token.js";
 import { BlacklistTokenModel } from "../models/blacklist.token.model.js";
+
 
 export const registerUser = async (req, res, next) => {
   try {
@@ -41,6 +44,7 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
+
 export const loginUser = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -68,9 +72,11 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
+
 export const getUserProfile = async (req, res, next) => {
   res.status(200).json(req.user);
 };
+
 
 export const logoutUser = async (req, res, next) => {
   console.log("In logout controller");
