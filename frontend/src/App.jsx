@@ -7,6 +7,7 @@ import CaptainLogin from './pages/CaptainLogin'
 import CaptainSignup from './pages/CaptainSignup'
 
 function App() {
+
   return (
     <div >
       <Routes>

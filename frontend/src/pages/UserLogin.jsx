@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserDate] = useState({});
+  const [userData, setUserData] = useState({});
 
-  const sumbitHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    setUserDate({
+    setUserData({
       email: email,
       password: password,
     });
@@ -24,7 +24,7 @@ function UserLogin() {
           alt=""
         />
 
-        <form onSubmit={(e) => sumbitHandler(e)}>
+        <form onSubmit={(e) => submitHandler(e)}>
           <h3 className="text-lg font-medium mb-2">What's your email</h3>
           <input
             required
