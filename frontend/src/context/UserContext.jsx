@@ -9,9 +9,10 @@ function UserContext({children}) {
     fullname:{
       firstname:'',
       lastname:''
-    }
+    },
+    password:''
   })
-  return <UserDataContext.Provider value={[user,setUser]}>
+  return <UserDataContext.Provider value={{user,setUser}}>
     {children}
   </UserDataContext.Provider>
 }
