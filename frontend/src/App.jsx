@@ -1,15 +1,15 @@
-import React from 'react'
-import { Routes ,Route} from 'react-router-dom'
-import Home from './pages/Home'
-import UserLogin from './pages/UserLogin'
-import UserSignup from './pages/UserSignup'
-import CaptainLogin from './pages/CaptainLogin'
-import CaptainSignup from './pages/CaptainSignup'
-import Default from './pages/Default'
-import UserProtectWrapper from './pages/UserProtectWrapper'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import UserLogin from "./pages/UserLogin";
+import UserSignup from "./pages/UserSignup";
+import CaptainLogin from "./pages/CaptainLogin";
+import CaptainSignup from "./pages/CaptainSignup";
+import Default from "./pages/Default";
+import UserProtectWrapper from "./pages/UserProtectWrapper";
+import UserLogout from "./pages/UserLogout";
 
 function App() {
-
   return (
     <div>
       <Routes>
@@ -18,14 +18,25 @@ function App() {
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captain-login" element={<CaptainLogin />} />
         <Route path="/captain-signup" element={<CaptainSignup />} />
-        <Route path="/home" element={
-          <UserProtectWrapper>
-            <Default/>
-          </UserProtectWrapper>
-        } />
+        <Route
+          path="/home"
+          element={
+            <UserProtectWrapper>
+              <Default />
+            </UserProtectWrapper>
+          }
+        />
+        <Route
+          path="/users/logout"
+          element={
+            <UserProtectWrapper>
+              <UserLogout />
+            </UserProtectWrapper>
+          }
+        />
       </Routes>
     </div>
   );
 }
 
-export default App
+export default App;
