@@ -1,25 +1,59 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CaptainDataContext } from "../context/CaptainContext";
+import axios from "axios";
+
 const CaptainSignup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ firstName, setFirstName ] = useState('')
-  const [ lastName, setLastName ] = useState('')
+  const [vehicleColor, setVehicleColor] = useState("");
+  const [vehiclePlate, setVehiclePlate] = useState("");
+  const [vehicleCapacity, setVehicleCapacity] = useState("");
+  const [vehicleType, setVehicleType] = useState("");
+  const { captain, setCaptain } = useContext(CaptainDataContext);
+  const navigate = useNavigate();
 
-  const [ vehicleColor, setVehicleColor ] = useState('')
-  const [ vehiclePlate, setVehiclePlate ] = useState('')
-  const [ vehicleCapacity, setVehicleCapacity ] = useState('')
-  const [ vehicleType, setVehicleType ] = useState('')
+  const submitHandler = async (e) => {
+    e.preventDefault();
 
+    const captainData = {
+      fullname: {
+        firstname: firstName,
+        lastname: lastName,
+      },
+      email,
+      password,
+      vehicle: {
+        color: vehicleColor,
+        plate: vehiclePlate,
+        capacity: vehicleCapacity,
+        vehicleType: vehicleType,
+      },
+    };
 
-
-
-  const submitHandler =  (e) => {
-    e.preventDefault()
-    
+    const response = await axios.post(
+      "http://localhost:5001/captains/register",
+      captainData
+    );
+    if (response.status === 201) {
+      const data = response.data;
+      setCaptain(data.captain);
+      localStorage.setItem("token", data.token);
+      navigate("/captain-home");
     }
+    setEmail("");
+    setPassword("");
+    setFirstName("");
+    setLastName("");
+    setVehicleCapacity("");
+    setVehicleColor("");
+    setVehiclePlate("");
+    setVehicleType("");
+  };
 
   return (
     <div className="py-5 px-5 h-screen flex flex-col justify-between">
@@ -159,6 +193,6 @@ const CaptainSignup = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CaptainSignup
+export default CaptainSignup;

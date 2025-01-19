@@ -8,6 +8,7 @@ import { BlacklistTokenModel } from "../models/blacklist.token.model.js";
 
 
 export const registerCaptain = async (req, res, next) => {
+  // console.log("Request recahed")
   try {
     // console.log('Req obj is',req.body)
     const errors = validationResult(req);
