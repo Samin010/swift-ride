@@ -24,7 +24,7 @@ function App() {
           path="/home"
           element={
             <UserProtectWrapper>
-              <Default />
+              <Home/>
             </UserProtectWrapper>
           }
         />
